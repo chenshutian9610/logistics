@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="web.beans.Corporation" table="corporation">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="name"/>
+        <property name="address" column="address"/>
+        <property name="phone" column="phone"/>
+        <property name="info" column="info"/>
+        <property name="link" column="link"/>
+        <one-to-one name="member" class="web.beans.Member"/>
+    </class>
+</hibernate-mapping>
