@@ -1,20 +1,60 @@
 package web.dao;
 
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 import web.beans.Goods;
 import web.beans.Member;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
-public interface GoodsDao {
-    public void insert(Goods goods);
+@Repository("goodsDao")
+public class GoodsDao {
+    @Resource(name = "template")
+    HibernateTemplate template;
 
-    public void update(Goods goods);
+    public HibernateTemplate getTemplate() {
+        return template;
+    }
 
-    public List<Goods> select(String name);
+    public void setTemplate(HibernateTemplate template) {
+        this.template = template;
+    }
 
-    public void delete(Goods goods);
 
-    public Goods getById(int id);
+    public void insert(Goods goods) {
+        template.save(goods);
+    }
 
-    public List<Goods> getByMember(Member member);
+
+    public void update(Goods goods) {
+        template.update(goods);
+    }
+
+
+    public List<Goods> select(String name) {
+        List<Goods> goods = template.find("from Goods where name like '%" + name + "%'");
+        return goods;
+    }
+
+
+    public void delete(Goods goods) {
+        template.delete(goods);
+    }
+
+
+    public Goods getById(int id) {
+        return template.get(Goods.class, id);
+    }
+
+    public List<Goods> getByMember(Member member) {
+        List<Goods> all = template.find("from Goods");
+        List<Goods> result = new ArrayList<Goods>();
+        for (Goods g : all) {
+            if (member.getId() == g.getMember().getId())
+                result.add(g);
+        }
+        return result;
+    }
 }

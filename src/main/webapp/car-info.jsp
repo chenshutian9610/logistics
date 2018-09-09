@@ -19,7 +19,7 @@
             real = "?real=true";%>
     <h3 style="color: red">${requestScope.message }</h3>
     <form action="carAction_publish<%=real %>" method="post">
-        <table width="60%" height="60%" border="1">
+        <table height="60%" width="60%" border="1" cellspacing="0" style="border-collapse: collapse;">
             <tr align="center">
                 <td width="25% ">标题</td>
                 <td width="400"><input type="text" name="c.title" size="20"
@@ -60,6 +60,7 @@
                         <%=readonly %>><%=car.getInfo()%></textarea></td>
             </tr>
         </table>
+        <br>
         <% if ("管理员模式".equals(session.getAttribute("message"))) { %>
         <input type="hidden" name="c.id" value="<%=car.getId()%>"/> <input
             type="submit" value="修改"/> &nbsp;&nbsp;&nbsp;&nbsp; <a

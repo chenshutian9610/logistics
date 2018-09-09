@@ -19,7 +19,7 @@
             real = "?real=true";%>
     <h3 style="color: red">${requestScope.message }</h3>
     <form action="dynamicInfoAction_publish<%=real %>" method="post">
-        <table width="60%" height="60%" border="1">
+        <table height="60%" width="60%" border="1" cellspacing="0" style="border-collapse: collapse;">
             <tr align="center" height="50">
                 <td>标题</td>
                 <td <% if ("readonly".equals(readonly)) { %> colspan="3" <%} %>>

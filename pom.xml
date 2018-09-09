@@ -6,7 +6,7 @@
     <groupId>tree</groupId>
     <artifactId>logistics</artifactId>
     <version>old</version>
-    <packaging>war</packaging>
+
     <build>
         <plugins>
             <plugin>
@@ -25,9 +25,6 @@
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.25</version>
-                <configuration>
-                    <contextPath>/</contextPath>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -17,7 +17,7 @@
             real = "?real=true";%>
     <h3 style="color: red">${requestScope.message }</h3>
     <form action="corporationAction_publish<%=real %>" method="post">
-        <table width="60%" height="60%" border="1">
+        <table height="60%" width="60%" border="1" cellspacing="0" style="border-collapse: collapse;">
             <tr align="center">
                 <td width="25% ">公司名称</td>
                 <td width="400"><input type="text" name="cor.name" size="20"

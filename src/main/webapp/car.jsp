@@ -9,7 +9,7 @@
 <%@ include file="toolbar" %>
 <center>
     <h1>车辆信息</h1>
-    <table width="100%" border="1">
+    <table width="80%" border="1" cellspacing="0" style="border-collapse: collapse;">
         <tr>
             <td>标题</td>
             <td>货车数量</td>
