@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="myPackage" extends="struts-default">
+        <action name="startAction_*" class="web.controller.StartAction" method="{1}">
+			<result name="input">/index.jsp</result>
+			<result name="init">/index.jsp</result>
+        	<result name="register">/register.jsp</result>
+        	<result name="findPWD">/findPWD.jsp</result>
+        </action>
+        <action name="goodsAction_*" class="web.controller.GoodsAction" method="{1}">
+        	<result name="entry">/goods.jsp</result>
+        	<result name="info">/goods-info.jsp</result>
+			<result name="input">/index.jsp</result>
+        </action>
+        <action name="carAction_*" class="web.controller.CarAction" method="{1}">
+        	<result name="entry">/car.jsp</result>
+        	<result name="info">/car-info.jsp</result>
+        	<result name="input">/index.jsp</result>
+        </action>
+        <action name="corporationAction_*" class="web.controller.CorporationAction" method="{1}">
+        	<result name="entry">/corporation.jsp</result>
+        	<result name="info">/corporation-info.jsp</result>
+        	<result name="input">/index.jsp</result>
+        </action>
+        <action name="knowledgeAction_*" class="web.controller.KnowledgeAction" method="{1}">
+        	<result name="entry">/knowledge.jsp</result>
+        	<result name="info">/knowledge-info.jsp</result>
+        	<result name="input">/index.jsp</result>
+        </action>
+        <action name="dynamicInfoAction_*" class="web.controller.DynamicInfoAction" method="{1}">
+        	<result name="entry">/dynamicInfo.jsp</result>
+        	<result name="info">/dynamicInfo-info.jsp</result>
+        	<result name="input">/index.jsp</result>
+        </action>
+        <action name="informAction_*" class="web.controller.InformAction" method="{1}">
+        	<result name="entry">/inform.jsp</result>
+        	<result name="info">/inform-info.jsp</result>
+        	<result name="input">/index.jsp</result>
+        </action>
+    </package>
+</struts>

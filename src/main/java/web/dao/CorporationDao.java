@@ -1,61 +1,19 @@
 package web.dao;
 
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
-import web.beans.Corporation;
-import web.beans.Member;
+import web.domain.Corporation;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Repository("corporationDao")
-public class CorporationDao {
-    @Resource(name = "template")
-    HibernateTemplate template;
-
-    public HibernateTemplate getTemplate() {
-        return template;
+@Repository
+public class CorporationDao extends BaseDao<Corporation> {
+    public Corporation selectByMemberName(String name) {
+        List<Corporation>result=session.find("from Corporation cor where cor.member.name=?", name);
+        if(result.size()==0)
+            return null;
+        return result.get(0);
     }
-
-    public void setTemplate(HibernateTemplate template) {
-        this.template = template;
+    public List<Corporation> selectByVagueName(String name){
+        return (List<Corporation>) session.find("from Corporation cor where cor.name like '%"+name+"%'");
     }
-
-
-    public void insert(Corporation corporation) {
-        template.save(corporation);
-    }
-
-
-    public void update(Corporation corporation) {
-        template.update(corporation);
-    }
-
-
-    public List<Corporation> select(String name) {
-        List<Corporation> corporations = template.find("from Corporation where name like '%" + name + "%'");
-        return corporations;
-    }
-
-
-    public void delete(Corporation corporation) {
-        template.delete(corporation);
-    }
-
-
-    public Corporation getById(int id) {
-        return template.get(Corporation.class, id);
-    }
-
-
-    public Corporation getByMember(Member member) {
-        List<Corporation> all = template.find("from Corporation");
-        Corporation corporation = new Corporation();
-        for (Corporation cor : all) {
-            if (cor.getMember().getId() == member.getId())
-                corporation = cor;
-        }
-        return corporation;
-    }
-
 }

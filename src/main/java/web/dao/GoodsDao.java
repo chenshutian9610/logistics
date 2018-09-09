@@ -1,60 +1,17 @@
 package web.dao;
 
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
-import web.beans.Goods;
-import web.beans.Member;
+import web.domain.Goods;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository("goodsDao")
-public class GoodsDao {
-    @Resource(name = "template")
-    HibernateTemplate template;
-
-    public HibernateTemplate getTemplate() {
-        return template;
+@Repository
+public class GoodsDao extends BaseDao<Goods> {
+    public List<Goods> selectByMemberName(String name) {
+        return (List<Goods>) session.find("from Goods g where g.member.name=?", name);
     }
 
-    public void setTemplate(HibernateTemplate template) {
-        this.template = template;
-    }
-
-
-    public void insert(Goods goods) {
-        template.save(goods);
-    }
-
-
-    public void update(Goods goods) {
-        template.update(goods);
-    }
-
-
-    public List<Goods> select(String name) {
-        List<Goods> goods = template.find("from Goods where name like '%" + name + "%'");
-        return goods;
-    }
-
-
-    public void delete(Goods goods) {
-        template.delete(goods);
-    }
-
-
-    public Goods getById(int id) {
-        return template.get(Goods.class, id);
-    }
-
-    public List<Goods> getByMember(Member member) {
-        List<Goods> all = template.find("from Goods");
-        List<Goods> result = new ArrayList<Goods>();
-        for (Goods g : all) {
-            if (member.getId() == g.getMember().getId())
-                result.add(g);
-        }
-        return result;
+    public List<Goods> selectByStart(String start) {
+        return (List<Goods>) session.find("from Goods g where g.start like '%" + start + "%'");
     }
 }
