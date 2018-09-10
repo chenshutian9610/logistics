@@ -25,20 +25,6 @@
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.25</version>
-                <configuration>
-                    <contextPath>/</contextPath>
-                </configuration>
-            </plugin>
-            <!-- 高版本 jetty -->
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.2.25.v20180606</version>
-                <configuration>
-                    <webApp>
-                        <contextPath>/</contextPath>
-                    </webApp>
-                </configuration>
             </plugin>
         </plugins>
     </build>
