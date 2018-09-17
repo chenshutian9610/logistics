@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>信息</title>
-    <script src="../resources/jquery3.3.1.js"></script>
+    <script src="/resources/jquery3.3.1.js"></script>
     <script>
         var i = 0;
 
@@ -17,9 +17,9 @@
         }
     </script>
 </head>
-<body onload="readable('${requestScope.readonly}')">
+<body onload="readable('${readonly}')">
 <%@ include file="toolbar.jsp" %>
 <c:set var="rows" value="10"/><br><br><br>
-<form action="${type}Action_publish?num=${param.id}" method="post">
+<form action="/${type}/publish?id=${param.id}" method="post">
     <table align="center" width="60%">
         <tr>

@@ -3,3 +3,4 @@ target
 .settings
 src/main/webapp/WEB-INF
 src/main/webapp/META-INF
+logistics.iml

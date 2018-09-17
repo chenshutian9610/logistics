@@ -1,29 +1,30 @@
 package web.domain;
 
-import org.hibernate.annotations.GenericGenerator;
+public class Knowledge implements BaseDomain {
+    private Integer id;
 
-import javax.persistence.*;
+    private String title;
 
-@Entity
-public class Knowledge extends BaseDomain{
-    @Id
-    @GeneratedValue(generator = "my")
-    @GenericGenerator(name = "my", strategy = "increment")
-    public int getId() {
+    private String date;
+
+    private String info;
+
+    private Integer memId;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "title")
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getDate() {
@@ -31,7 +32,7 @@ public class Knowledge extends BaseDomain{
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date = date == null ? null : date.trim();
     }
 
     public String getInfo() {
@@ -39,16 +40,14 @@ public class Knowledge extends BaseDomain{
     }
 
     public void setInfo(String info) {
-        this.info = info;
+        this.info = info == null ? null : info.trim();
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "mem_id")
-    public Member getMember() {
-        return member;
+    public Integer getMemId() {
+        return memId;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setMemId(Integer memId) {
+        this.memId = memId;
     }
 }

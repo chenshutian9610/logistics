@@ -4,10 +4,10 @@
     <td>发布日期</td>
     <td>详细信息</td>
 </tr>
-<c:forEach items="${requestScope.result}" var="result">
+<c:forEach items="${result}" var="result">
     <tr align="center">
-        <td>${result.name}</td>
+        <td>${result.title}</td>
         <td>${result.date}</td>
-        <td><a href="${type}Action_info?id=${result.id}">详细</a></td>
+        <td><a href="/${type}/info?id=${result.id}">详细</a></td>
     </tr>
 </c:forEach>

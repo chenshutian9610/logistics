@@ -1,23 +1,27 @@
 package web.domain;
 
-import org.hibernate.annotations.GenericGenerator;
+public class Corporation implements BaseDomain {
+    private Integer id;
 
-import javax.persistence.*;
+    private String name;
 
-@Entity
-public class Corporation extends BaseDomain{
-    private String phone;
     private String address;
+
+    private String phone;
+
     private String link;
 
-    @Id
-    @GeneratedValue(generator = "my")
-    @GenericGenerator(name = "my", strategy = "increment")
-    public int getId() {
+    private String date;
+
+    private String info;
+
+    private Integer memId;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -26,15 +30,7 @@ public class Corporation extends BaseDomain{
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getAddress() {
@@ -42,15 +38,15 @@ public class Corporation extends BaseDomain{
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
-    public String getInfo() {
-        return info;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public String getLink() {
@@ -58,24 +54,30 @@ public class Corporation extends BaseDomain{
     }
 
     public void setLink(String link) {
-        this.link = link;
+        this.link = link == null ? null : link.trim();
     }
 
     public String getDate() {
-        return super.getDate();
+        return date;
     }
 
     public void setDate(String date) {
-        super.setDate(date);
+        this.date = date == null ? null : date.trim();
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "mem_id")
-    public Member getMember() {
-        return member;
+    public String getInfo() {
+        return info;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setInfo(String info) {
+        this.info = info == null ? null : info.trim();
+    }
+
+    public Integer getMemId() {
+        return memId;
+    }
+
+    public void setMemId(Integer memId) {
+        this.memId = memId;
     }
 }

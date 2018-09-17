@@ -1,42 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <tx:annotation-driven proxy-target-class="true"/>
     <context:component-scan base-package="web.*"/>
     <context:property-placeholder location="classpath:db.properties"/>
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
           p:driverClassName="${driver}" p:username="${name}" p:url="${url}"/>
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
-          p:dataSource-ref="dataSource" p:packagesToScan="web.domain">
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <!-- 只有 create 和 create-drop 会导入 import.sql -->
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
-            </props>
-        </property>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource"/>
+    <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource"/>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dataSource" p:configLocation="classpath:mybatis-config.xml"/>
+    <bean id="session" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory"/>
     </bean>
-    <bean id="template" class="org.springframework.orm.hibernate3.HibernateTemplate" p:sessionFactory-ref="sessionFactory"/>
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
-          p:sessionFactory-ref="sessionFactory"/>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="web.mapper"/>
+
     <!-- 相当于使用 @Transactional -->
-    <tx:advice id="tx">
-        <tx:attributes>
-            <tx:method name="*" propagation="REQUIRED"/>
-        </tx:attributes>
-    </tx:advice>
-    <aop:config>
-        <aop:advisor advice-ref="tx" pointcut="execution(* web.dao.*.*(..))"/>
-    </aop:config>
+    <!--<tx:advice id="tx">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="*" propagation="REQUIRED"/>-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+    <!--<aop:config>-->
+        <!--<aop:advisor advice-ref="tx" pointcut="execution(* web..*.*(..))"/>-->
+    <!--</aop:config>-->
 </beans>

@@ -21,7 +21,9 @@
             </ul>
         </td>
     </tr>
-    <tr><td><br>&emsp;&emsp;&emsp;<a href="startAction_init">进入主页</a></td></tr>
+    <tr>
+        <td><br>&emsp;&emsp;&emsp;<a href="/">进入主页</a></td>
+    </tr>
 </table>
 </body>
 </html>

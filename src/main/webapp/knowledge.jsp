@@ -3,6 +3,6 @@
 <%@ page isELIgnored="false" %>
 <c:set var="title" value="物流知识"/>
 <c:set var="type" value="knowledge"/>
-<%@ include file="components/entry-front.jsp"%>
-<%@ include file="components/entry-middle.jsp"%>
+<%@ include file="components/entry-front.jsp" %>
+<%@ include file="components/entry-middle.jsp" %>
 <%@ include file="components/entry-after.jsp" %>

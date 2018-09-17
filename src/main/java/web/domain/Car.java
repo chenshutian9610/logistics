@@ -1,33 +1,36 @@
 package web.domain;
 
-import org.hibernate.annotations.GenericGenerator;
+public class Car implements BaseDomain{
+    private Integer id;
 
-import javax.persistence.*;
+    private String title;
 
-@Entity
-public class Car extends BaseDomain{
     private String count;
-    private String capacity;    //	per
-    private String start;       //	place
 
-    @Id
-    @GeneratedValue(generator = "my")
-    @GenericGenerator(name = "my", strategy = "increment")
-    public int getId() {
+    private String capacity;
+
+    private String start;
+
+    private String date;
+
+    private String info;
+
+    private Integer memId;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "title")
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getCount() {
@@ -35,7 +38,7 @@ public class Car extends BaseDomain{
     }
 
     public void setCount(String count) {
-        this.count = count;
+        this.count = count == null ? null : count.trim();
     }
 
     public String getCapacity() {
@@ -43,7 +46,7 @@ public class Car extends BaseDomain{
     }
 
     public void setCapacity(String capacity) {
-        this.capacity = capacity;
+        this.capacity = capacity == null ? null : capacity.trim();
     }
 
     public String getStart() {
@@ -51,15 +54,7 @@ public class Car extends BaseDomain{
     }
 
     public void setStart(String start) {
-        this.start = start;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
+        this.start = start == null ? null : start.trim();
     }
 
     public String getDate() {
@@ -67,16 +62,22 @@ public class Car extends BaseDomain{
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date = date == null ? null : date.trim();
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "mem_id")
-    public Member getMember() {
-        return member;
+    public String getInfo() {
+        return info;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setInfo(String info) {
+        this.info = info == null ? null : info.trim();
+    }
+
+    public Integer getMemId() {
+        return memId;
+    }
+
+    public void setMemId(Integer memId) {
+        this.memId = memId;
     }
 }

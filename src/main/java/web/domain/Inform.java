@@ -1,32 +1,28 @@
 package web.domain;
 
-import org.hibernate.annotations.GenericGenerator;
+public class Inform implements BaseDomain{
+    private Integer id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+    private String title;
 
-@Entity
-public class Inform extends BaseDomain{
-    @Id
-    @GeneratedValue(generator = "my")
-    @GenericGenerator(name = "my", strategy = "increment")
-    public int getId() {
+    private String date;
+
+    private String info;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Column(name = "title")
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getDate() {
@@ -34,7 +30,7 @@ public class Inform extends BaseDomain{
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date = date == null ? null : date.trim();
     }
 
     public String getInfo() {
@@ -42,6 +38,9 @@ public class Inform extends BaseDomain{
     }
 
     public void setInfo(String info) {
-        this.info = info;
+        this.info = info == null ? null : info.trim();
     }
+
+    public Integer getMemId(){return null;}
+    public void setMemId(Integer id){}
 }
